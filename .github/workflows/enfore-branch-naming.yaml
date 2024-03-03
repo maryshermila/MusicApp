@@ -1,0 +1,18 @@
+name: Enforce Branch Naming Convention
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  enforce-branch-naming:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Branch Naming
+        run: |
+          if [[ ! "$GITHUB_REF" =~ ^refs/heads/(feature|bugfix|hotfix|release|task|experiment|temp|main)/.*$ ]]; then
+            echo "Invalid branch name. Please follow the branch naming convention."
+            exit 1
+          fi
