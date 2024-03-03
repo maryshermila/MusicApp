@@ -13,7 +13,11 @@ jobs:
       - name: Check Branch Naming
         run: |
           echo "Branch Name: $GITHUB_REF"
-          if [[ ! "$GITHUB_REF" =~ ^refs/heads/master$ ]]; then
+          if [[ "$GITHUB_REF" =~ ^refs/heads/(master|main)$ ]]; then
+            echo "Valid branch name."
+          elif [[ "$GITHUB_REF" =~ ^refs/heads/(feature|bugfix|hotfix|release|task|experiment|temp).*$ ]]; then
+            echo "Valid branch name."
+          else
             echo "Invalid branch name. Please follow the branch naming convention."
             exit 1
           fi
