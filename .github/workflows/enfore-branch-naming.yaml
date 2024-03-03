@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Check Branch Naming
         run: |
-          if [[ ! "$GITHUB_REF" =~ ^refs/heads/(master|main)$ || ! "$GITHUB_REF" =~ ^refs/heads/(feature|bugfix|hotfix|release|task|experiment|temp).*$ ]]; then
+          if [[ ! "$GITHUB_REF" =~ ^refs/heads/(master|main|feature|bugfix|hotfix|release|task|experiment|temp)/.*$ ]]; then
             echo "Invalid branch name. Please follow the branch naming convention."
             exit 1
           fi
